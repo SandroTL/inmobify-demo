@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Guiones Inmobify Saneamiento</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Plan de rodaje con la marca Inmobify (manual 2026): claqueta por video y guion en letra grande para leer en voz alta. */
+:root{
+  --bg:#f7f4f1; --papel:#ffffff; --tinta:#303030; --suave:#6b625c; --linea:#e7dfd8;
+  --marca:#c94a0c; --oro:#ff6a1f; --oro-suave:#fff0e6; --rec:#b5302b; --rec-suave:#fbe7e4; --ok:#1f6e4a; --ok-suave:#e1f1e8;
+  --display:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --texto:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --lectura:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1a19; --papel:#262321; --tinta:#f1ece8; --suave:#b3a79f; --linea:#3a3532;
+  --marca:#ff8a4c; --oro:#ff9600; --oro-suave:#3a2414; --rec:#ff7a72; --rec-suave:#3a1d1c; --ok:#7bd3a4; --ok-suave:#15301f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1a19; --papel:#262321; --tinta:#f1ece8; --suave:#b3a79f; --linea:#3a3532;
+  --marca:#ff8a4c; --oro:#ff9600; --oro-suave:#3a2414; --rec:#ff7a72; --rec-suave:#3a1d1c; --ok:#7bd3a4; --ok-suave:#15301f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--tinta);font:15px/1.55 var(--texto)}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:22px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--oro)}
+h1{font:800 clamp(34px,6vw,54px)/1.02 var(--display);letter-spacing:-.02em;color:var(--marca)}
+.lede{color:var(--suave);max-width:70ch;font-size:16px}
+.reglas{background:var(--papel);border:1px solid var(--linea);border-radius:10px;padding:16px 18px;display:grid;gap:10px}
+.reglas h2{font:700 19px var(--display)}
+.reglas ul{margin:0;padding-left:18px;display:grid;gap:4px;columns:2 300px;column-gap:28px}
+.reglas li{break-inside:avoid}
+.barra{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.filtros{display:flex;flex-wrap:wrap;gap:6px}
+.filtros button,.lectura-btn{font:600 14px var(--texto);border:1px solid var(--linea);background:var(--papel);color:var(--tinta);border-radius:999px;padding:7px 14px;cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--marca);border-color:var(--marca);color:var(--papel)}
+.lectura-btn[aria-pressed="true"]{background:var(--oro-suave);border-color:var(--oro);color:var(--tinta)}
+button:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+.cuenta{font:500 12.5px var(--mono);color:var(--suave)}
+section.etapa{display:grid;gap:14px}
+section.etapa>header{display:grid;gap:4px}
+section.etapa h2{font:800 26px/1.1 var(--display);letter-spacing:-.01em;color:var(--marca)}
+section.etapa>header p{color:var(--suave);max-width:72ch}
+.video{background:var(--papel);border:1px solid var(--linea);border-radius:10px;overflow:hidden;display:grid}
+.claqueta{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--linea)}
+.cod{font:700 15px var(--mono);background:var(--tinta);color:var(--papel);border-radius:6px;padding:6px 9px;letter-spacing:.04em}
+.claqueta h3{font:700 18px/1.25 var(--display)}
+.claqueta .sub{font-size:13px;color:var(--suave)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.chip{font:600 12px var(--mono);border-radius:999px;padding:3px 9px;background:var(--bg);color:var(--suave);white-space:nowrap}
+.chip.p1{background:var(--rec-suave);color:var(--rec)}
+.chip.p2{background:var(--oro-suave);color:var(--oro)}
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0;border-bottom:1px solid var(--linea)}
+.datos div{padding:10px 16px;display:grid;gap:2px;min-width:0;border-right:1px solid var(--linea)}
+.datos div:last-child{border-right:0}
+.datos dt{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.datos dd{margin:0;font-size:14px}
+.pantalla{padding:10px 16px;border-bottom:1px solid var(--linea);display:grid;gap:2px;background:var(--oro-suave)}
+.pantalla dt{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--oro)}
+.pantalla dd{margin:0;font:700 16px/1.35 var(--display)}
+.guion{padding:16px 18px 14px;display:grid;gap:10px}
+.guion .texto{font:400 18px/1.65 var(--lectura);max-width:62ch}
+.lectura .guion .texto{font-size:27px;line-height:1.55;max-width:none}
+.guion .pie{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.medida{font:500 12.5px var(--mono);color:var(--suave)}
+.medida.larga{color:var(--rec)}
+.acciones{display:flex;gap:8px;flex-wrap:wrap}
+.acciones button,.acciones label{font:600 13px var(--texto);border:1px solid var(--linea);background:var(--papel);color:var(--tinta);border-radius:8px;padding:6px 12px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.acciones input{accent-color:var(--ok);width:16px;height:16px;margin:0}
+.video.grabado{border-color:var(--ok)}
+.video.grabado .cod{background:var(--ok)}
+.nota{font-size:13px;color:var(--suave);padding:0 18px 14px}
+.nota b{color:var(--tinta)}
+@media (max-width:600px){.claqueta{grid-template-columns:auto minmax(0,1fr)}.chips{grid-column:1/-1;justify-content:flex-start}.guion .texto{font-size:18px}.lectura .guion .texto{font-size:23px}}
+@media (prefers-reduced-motion:no-preference){.video{transition:border-color .2s}}
+.escuchar{font:600 13px var(--texto);border:1px solid var(--marca);color:var(--marca);background:var(--papel);border-radius:8px;padding:6px 12px;text-decoration:none}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header style="display:grid;gap:10px">
+    <span class="eyebrow">inmobify · Saneamiento inmobiliario · saneamiento.inmobify.com.pe · 20/11/2026</span>
+    <h1>Guiones para grabar</h1>
+    <p class="lede"><b>Versión para leer · 21/11/2026.</b> Los guiones de la landing traen un video de prueba con voz sintética («Escuchar prueba»); la demo de la landing está en <a href="../">sandrotl.github.io/inmobify-demo</a>. Videos de la pauta (anuncios en Meta y TikTok) y videos de complemento para la landing: bienvenida, planes, preguntas frecuentes y reunión. Todos van en vertical 9:16. El tiempo estimado sale del número de palabras, a 2.5 palabras por segundo.</p>
+  </header>
+
+  <section class="reglas" aria-labelledby="t-reglas">
+    <h2 id="t-reglas">Antes de grabar</h2>
+    <ul>
+      <li>Vertical 9:16, 1080 × 1920, 30 cuadros. Micrófono de solapa.</li>
+      <li>Empezar hablando, sin saludo. Los primeros 2 segundos deciden si la persona se queda.</li>
+      <li>Subtítulos quemados palabra por palabra, en Poppins Bold blanco con caja naranja #ff6a1f.</li>
+      <li>Logo «inmobify» blanco arriba o al cierre. Nada importante en el 20 % inferior: ahí van los botones de TikTok y Reels.</li>
+      <li>Luz natural y espacios amplios, como pide el manual de marca. Gestos naturales, sin poses de catálogo.</li>
+      <li>Sin actores haciendo de clientes ni testimonios inventados. Testimonio solo con cliente real y autorización firmada.</li>
+      <li>No prometer resultados: lo decide el notario o SUNARP. Nunca «garantizado» ni «en X días seguro».</li>
+      <li>Los anuncios no dicen precios. Solo L12 dice «desde S/ 2,000»; en los videos de planes no se dice el monto, ya está en pantalla.</li>
+      <li>Sin documentos ni partidas reales en cámara: usar modelos genéricos.</li>
+      <li>Entregar cada video como <b>código.mp4</b> (por ejemplo, I02.mp4). Anuncio menor de 10 MB.</li>
+    </ul>
+  </section>
+
+  <div class="barra">
+    <div class="filtros" role="group" aria-label="Filtrar videos">
+      <button type="button" id="f-todos" data-f="todos" aria-pressed="true">Todos</button>
+      <button type="button" id="f-pauta" data-f="pauta" aria-pressed="false">Pauta</button>
+      <button type="button" id="f-complemento" data-f="complemento" aria-pressed="false">Complemento</button>
+      <button type="button" id="f-p1" data-f="p1" aria-pressed="false">Primero (P1)</button>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="cuenta" id="cuenta"></span>
+      <button type="button" class="lectura-btn" id="lectura" aria-pressed="false">Letra grande para leer</button>
+    </div>
+  </div>
+
+  <main id="lista" style="display:grid;gap:30px"></main>
+</div>
+
+<script>
+const ETAPAS = [
+  { id: 'pauta', titulo: 'Pauta · anuncios', texto: 'Van en Meta (Reels, Stories, Feed) y TikTok. Llevan a la landing. Sin precios.' },
+  { id: 'landing', grupo: 'complemento', titulo: 'Complemento · la landing', texto: 'Arriba de la portada y en las preguntas frecuentes. La primera pregunta del cuestionario va sin video, para que las opciones se vean sin bajar.' },
+  { id: 'diagnostico', grupo: 'complemento', titulo: 'Complemento · tu trámite', texto: 'En la pantalla del diagnóstico, según la pregunta 1. El cliente ve solo el de su trámite y su complejidad (alta, media o baja).' },
+  { id: 'planes', grupo: 'complemento', titulo: 'Complemento · tu plan', texto: 'Un video por plan. El cliente ve solo el suyo, junto a su precio.' },
+  { id: 'reunion', grupo: 'complemento', titulo: 'Complemento · la reunión', texto: 'En «¿Te gustaría agendar?», en la pantalla de «Todavía no» y al confirmar.' }
+];
+const V = [
+ {
+  "cod": "I01",
+  "orden": 1,
+  "etapa": "pauta",
+  "p": "P1",
+  "titulo": "Gancho: la casa sigue a nombre de tus papás",
+  "dur": 20,
+  "habla": "Voz en off + texto gigante",
+  "donde": "Anuncio principal en TikTok y Reels",
+  "toma": "Sin persona en cámara. Frases gigantes en Poppins Black blanco sobre naranja Inmobify, intercaladas con imágenes luminosas: fachada de casa familiar, llaves, una partida registral genérica (sin datos reales). Cortes cada 3 s.",
+  "pantalla": "¿La casa sigue a nombre de tus papás? → Sin sucesión no se puede vender → 5 preguntas · 1 minuto",
+  "guion": "¿La casa de tus papás sigue a nombre de ellos? Mientras no hagas la sucesión, no la puedes vender ni repartir. Responde cinco preguntas y en un minuto sabes qué trámite necesitas.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I02",
+  "orden": 2,
+  "etapa": "pauta",
+  "p": "P1",
+  "titulo": "Abogada: sucesión sin juicio",
+  "dur": 30,
+  "habla": "Dra. Dariana Sánchez · abogada de saneamiento",
+  "donde": "Anuncio 2 · sucesión (39 % de los leads)",
+  "toma": "Plano medio, mirada a cámara, oficina luminosa detrás. Blusa o saco en tono neutro; detalle naranja de marca. Arranca hablando, sin saludo. Tono cercano y tranquilo.",
+  "pantalla": "Dra. Dariana Sánchez · Abogada de saneamiento, Inmobify. Subtítulos palabra por palabra.",
+  "guion": "Si tus papás fallecieron y la casa sigue a su nombre en registros públicos, presta mucha atención. Sin sucesión intestada no puedes venderla, hipotecarla ni repartirla entre hermanos. Si todos los herederos están de acuerdo, se hace en notaría, sin juicio pero sino están de acuerdo, podrías tener un juicio que demore décadas en resolverse. Entra al enlace, responde cinco preguntas y te digo qué trámite necesitas y cómo podemos ayudarte.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I03",
+  "orden": 3,
+  "etapa": "pauta",
+  "p": "P1",
+  "titulo": "Abogada: vives hace más de 10 años",
+  "dur": 30,
+  "habla": "Dra. Dariana Sánchez · abogada de saneamiento",
+  "donde": "Anuncio 3 · prescripción (23 % de los leads)",
+  "toma": "Plano medio frente a una casa de barrio (exterior, con permiso del dueño) o en la oficina. Tono claro y didáctico.",
+  "pantalla": "¿Vives hace más de 10 años en una casa que no está a tu nombre?",
+  "guion": "¿Vives hace más de diez años en una casa que compraste con minuta, o que nadie puso a tu nombre? La ley permite pedir la propiedad por prescripción adquisitiva, si tu posesión fue continua, pacífica, pública y como dueño. No todos los casos proceden: por eso primero revisamos tus pruebas, como recibos y prediales. Responde las preguntas del enlace, mira si tu caso califica y como podemos ayudarte.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I04",
+  "orden": 4,
+  "etapa": "pauta",
+  "p": "P1",
+  "titulo": "Sandro: antes de vender, papeles en orden",
+  "dur": 25,
+  "habla": "Sandro Torreblanca (o el gerente de Inmobify, por confirmar)",
+  "donde": "Anuncio 4 · autoridad y respaldo",
+  "toma": "Plano medio en la oficina, saco sin corbata. Tono firme y cercano, como a un amigo que quiere vender.",
+  "pantalla": "Inmobify · respaldada por Ubillus & Asociados",
+  "guion": "Si quieres vender un inmueble de la familia y el comprador te pide papeles en orden, este video es para ti. En Inmobify, con el respaldo del estudio Ubillus y Asociados, ordenamos sucesiones, prescripciones, independizaciones y declaratorias de fábrica. Antes de la reunión ya sabes qué trámite es. Entra al enlace, responde estas cinco preguntas y veremos la forma de ayudarte.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I05",
+  "orden": 5,
+  "etapa": "pauta",
+  "p": "P2",
+  "titulo": "Abogada: construiste el segundo piso",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez · abogada de saneamiento",
+  "donde": "Anuncio 5 · fábrica e independización",
+  "toma": "Exterior de una casa de dos o tres pisos (con permiso), luego la abogada a cámara con un plano genérico en la mano.",
+  "pantalla": "Primero se inscribe la construcción → luego cada piso tiene su partida",
+  "guion": "¿Construiste el segundo piso y quieres que cada piso tenga su propia partida? Primero hay que inscribir la construcción, eso es la declaratoria de fábrica. Después se independiza. Responde las preguntas del enlace y te digo cuál te toca, cuánto demora y como puedes hacer para que tu construcción quede en tus manos, recuerda, si no esta en papeles no existe.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I06",
+  "orden": 6,
+  "etapa": "pauta",
+  "p": "P2",
+  "titulo": "Abogada: un hermano no quiere firmar",
+  "dur": 25,
+  "habla": "Dra. Dariana Sánchez · abogada de saneamiento",
+  "donde": "Anuncio 6 · conflicto familiar",
+  "toma": "Primer plano, tono comprensivo. Sin dramatizaciones ni actores.",
+  "pantalla": "¿Un heredero no quiere hacer la sucesión?",
+  "guion": "¿Un hermano no quiere hacer la sucesión? La sucesión la puede pedir cualquier heredero. Si alguien se opone, el caso cambia de ruta, y por eso conviene revisarlo antes de gastar. Responde las preguntas del enlace y vemos juntos cuál es el camino para tu familia.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "I07",
+  "orden": 7,
+  "etapa": "pauta",
+  "p": "P2",
+  "titulo": "Testimonio real (solo con autorización)",
+  "dur": 35,
+  "habla": "Cliente real de Inmobify, con autorización firmada",
+  "donde": "Anuncio de prueba social, cuando haya un cliente dispuesto",
+  "toma": "En su casa o en la oficina. No se lee guion: se hacen las preguntas de abajo y se edita. Si no hay cliente real, este video no se graba.",
+  "pantalla": "Nombre y distrito del cliente (solo con su permiso)",
+  "guion": "Preguntas: ¿Qué problema tenía tu propiedad? ¿Qué te preocupaba antes de empezar? ¿Cómo fue el trámite con Inmobify? ¿En qué etapa está hoy? ¿Qué le dirías a alguien con el mismo problema? / PONER CASO DEL DE LOS REYES MAGOS Y PARAFRASEAR. HACER UNA REACCION DEL DR LEONARDO AL TESTIMONIO Y DECIR COMO ESTE CASO PUEDES SER TU EL SIGUIENTE",
+  "entrevista": true,
+  "video": ""
+ },
+ {
+  "cod": "L10",
+  "orden": 8,
+  "etapa": "landing",
+  "p": "P1",
+  "titulo": "Bienvenida de la landing",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez · abogada de saneamiento",
+  "donde": "Arriba de la portada, junto a «¿La casa de tus papás no está a tu nombre?»",
+  "toma": "Plano medio, cálido. Termina señalando hacia abajo, donde está el botón.",
+  "pantalla": "Descubre qué trámite necesitas · 1 minuto",
+  "guion": "Hola, soy Dariana, abogada de saneamiento de Inmobify. Responde cinco preguntas sobre tu propiedad. Al final te digo qué trámite necesitas y qué tan complejo es. Empieza abajo.",
+  "entrevista": false,
+  "video": "videos/L10.mp4"
+ },
+ {
+  "cod": "L11",
+  "orden": 9,
+  "etapa": "landing",
+  "p": "P2",
+  "titulo": "Quiénes somos",
+  "dur": 20,
+  "habla": "Sandro Torreblanca",
+  "donde": "Bloque de confianza de la landing",
+  "toma": "Recorrido por la oficina y el equipo trabajando (con su permiso), voz de Sandro encima.",
+  "pantalla": "Inmobify · respaldada por el estudio jurídico Ubillus & Asociados",
+  "guion": "Inmobify es la inmobiliaria del Grupo Ubillus. Detrás de cada trámite hay abogados especilistas inmobiliarios con decadas de experiencia. Somos una de las pocas inmobiliarias en el país con un equipo legal enfocado en esta materia, descubre como podemos ayudarte dandole clic al enlace.",
+  "entrevista": false,
+  "video": "videos/L11.mp4"
+ },
+ {
+  "cod": "L12",
+  "orden": 10,
+  "etapa": "landing",
+  "p": "P1",
+  "titulo": "Pregunta frecuente: ¿cuánto cuesta?",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Preguntas frecuentes · «¿Cuánto cuesta?»",
+  "toma": "Primer plano, tono tranquilo.",
+  "pantalla": "Diagnóstico desde S/ 2,000",
+  "guion": "Todo empieza con un diagnóstico, la Fase 1, desde dos mil soles. Ahí estudiamos tu partida y tus documentos y te damos la ruta completa con plazos y costos. La notaría y registros públicos se pagan aparte.",
+  "entrevista": false,
+  "video": "videos/L12.mp4"
+ },
+ {
+  "cod": "L13",
+  "orden": 11,
+  "etapa": "landing",
+  "p": "P1",
+  "titulo": "Pregunta frecuente: ¿cuánto demora?",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Preguntas frecuentes · «¿Cuánto demora?»",
+  "toma": "Primer plano. En pantalla aparecen los plazos mientras habla.",
+  "pantalla": "Sucesión 2–4 meses · Prescripción notarial ≈ 12 meses · desde que están todos los documentos",
+  "guion": "Una sucesión en notaría toma de dos a cuatro meses, y una prescripción notarial cerca de un año. El plazo corre desde que están todos los documentos. Conseguirlos toma uno o dos meses, y te ayudamos con eso.",
+  "entrevista": false,
+  "video": "videos/L13.mp4"
+ },
+ {
+  "cod": "L14",
+  "orden": 12,
+  "etapa": "landing",
+  "p": "P1",
+  "titulo": "Pregunta frecuente: ¿me garantizan el resultado?",
+  "dur": 20,
+  "habla": "Sandro Torreblanca",
+  "donde": "Preguntas frecuentes · «¿Me garantizan el resultado?»",
+  "toma": "Primer plano, tono honesto.",
+  "pantalla": "Lo que sí garantizamos",
+  "guion": "Ningún abogado serio te garantiza lo que decide el notario o registros públicos. Lo que sí te garantizamos es una ruta clara, el precio por escrito y cada avance por atraves de nuestros sistemas internos de control.",
+  "entrevista": false,
+  "video": "videos/L14.mp4"
+ },
+ {
+  "cod": "D20",
+  "orden": 13,
+  "etapa": "diagnostico",
+  "p": "P1",
+  "titulo": "Tu trámite: sucesión intestada",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del diagnóstico, ruta «a nombre de un familiar que falleció»",
+  "toma": "Primer plano, tono cercano.",
+  "pantalla": "Tu trámite: sucesión intestada",
+  "guion": "Tu caso es una sucesión intestada. Si todos los herederos están de acuerdo, se hace en notaría, sin juicio, y luego se inscribe en registros públicos. Desde ahí la casa ya puede venderse o repartirse.",
+  "entrevista": false,
+  "video": "videos/D20.mp4"
+ },
+ {
+  "cod": "D21",
+  "orden": 14,
+  "etapa": "diagnostico",
+  "p": "P1",
+  "titulo": "Tu trámite: prescripción adquisitiva",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del diagnóstico, rutas «vivo hace años» y «compré y no me dieron papeles»",
+  "toma": "Plano medio, con una carpeta de recibos sobre la mesa.",
+  "pantalla": "Tu trámite: prescripción adquisitiva",
+  "guion": "Tu caso apunta a una prescripción adquisitiva. Con tus pruebas de los años de posesión, recibos, prediales y testigos, armamos el expediente para la notaría. En el diagnóstico revisamos si tu caso califica y qué pruebas faltan.",
+  "entrevista": false,
+  "video": "videos/D21.mp4"
+ },
+ {
+  "cod": "D22",
+  "orden": 15,
+  "etapa": "diagnostico",
+  "p": "P2",
+  "titulo": "Tu trámite: declaratoria de fábrica",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del diagnóstico, ruta «construí más pisos»",
+  "toma": "Primer plano.",
+  "pantalla": "Tu trámite: declaratoria de fábrica",
+  "guion": "Tu caso es una declaratoria de fábrica: inscribir lo que construiste. La vía depende de cuándo se terminó la obra y si tiene licencia.",
+  "entrevista": false,
+  "video": "videos/D22.mp4"
+ },
+ {
+  "cod": "D23",
+  "orden": 16,
+  "etapa": "diagnostico",
+  "p": "P2",
+  "titulo": "Tu trámite: independización",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del diagnóstico, ruta «dividir el terreno o separar un departamento»",
+  "toma": "Primer plano, con un plano genérico.",
+  "pantalla": "Tu trámite: independización",
+  "guion": "Tu caso es una independización: cada piso o lote tendrá su propia partida. El ingeniero firma los planos y nosotros llevamos el trámite hasta registros públicos.",
+  "entrevista": false,
+  "video": "videos/D23.mp4"
+ },
+ {
+  "cod": "D24",
+  "orden": 17,
+  "etapa": "diagnostico",
+  "p": "P2",
+  "titulo": "Tu trámite: revisión antes de comprar",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del diagnóstico, ruta «voy a comprar»",
+  "toma": "Primer plano.",
+  "pantalla": "Revisión antes de comprar",
+  "guion": "Antes de pagar, revisamos la partida, las cargas y quién es el dueño real. Así sabes si la compra es segura antes de firmar.",
+  "entrevista": false,
+  "video": "videos/D24.mp4"
+ },
+ {
+  "cod": "P25",
+  "orden": 18,
+  "etapa": "planes",
+  "p": "P1",
+  "titulo": "Plan: Fase 1 rápida",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan: tiene partida y deciden hasta 3 personas",
+  "toma": "Plano medio, tono seguro. No decir el monto: ya está en pantalla.",
+  "pantalla": "Fase 1 · Diagnóstico rápido",
+  "guion": "Como tu propiedad ya tiene partida, empezamos con el diagnóstico rápido. Estudiamos tu partida y tus documentos y te entregamos la estrategia y el plan de trabajo con plazos y costos.",
+  "entrevista": false,
+  "video": "videos/P25.mp4"
+ },
+ {
+  "cod": "P26",
+  "orden": 19,
+  "etapa": "planes",
+  "p": "P1",
+  "titulo": "Plan: Fase 1 completa",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan: sin partida, no sabe, o 4 o más personas",
+  "toma": "Plano medio. No decir el monto.",
+  "pantalla": "Fase 1 · Diagnóstico completo",
+  "guion": "Tu caso necesita el diagnóstico completo: buscamos la propiedad en el catastro de registros públicos, estudiamos los documentos de todos y te entregamos la estrategia con plazos y costos.",
+  "entrevista": false,
+  "video": "videos/P26.mp4"
+ },
+ {
+  "cod": "P27",
+  "orden": 20,
+  "etapa": "planes",
+  "p": "P1",
+  "titulo": "Plan: revisión de expediente",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan: «Tengo un juicio por mi propiedad»",
+  "toma": "Primer plano, tono serio.",
+  "pantalla": "Revisión de tu expediente judicial",
+  "guion": "Como ya hay un juicio, lo primero es leer tu expediente. Envíanos lo que tengas por WhatsApp y en la reunión te decimos en qué etapa está y qué opciones tienes.",
+  "entrevista": false,
+  "video": "videos/P27.mp4"
+ },
+ {
+  "cod": "R30",
+  "orden": 21,
+  "etapa": "reunion",
+  "p": "P1",
+  "titulo": "¿Te gustaría agendar una reunión?",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla «¿Te gustaría agendar una reunión de consulta con nosotros?»",
+  "toma": "Primer plano, tono de invitación.",
+  "pantalla": "Reunión de consulta · sin compromiso",
+  "guion": "En la reunión revisamos tus documentos, resolvemos tus dudas sobre el plan y tú decides. Trae lo que tengas a la mano: DNI, partida, minuta o actas.",
+  "entrevista": false,
+  "video": "videos/R30.mp4"
+ },
+ {
+  "cod": "R31",
+  "orden": 22,
+  "etapa": "reunion",
+  "p": "P2",
+  "titulo": "Todavía no: la reunión no te compromete",
+  "dur": 15,
+  "habla": "Asesor comercial de Inmobify",
+  "donde": "Pantalla de «Todavía no»",
+  "toma": "Primer plano, tono tranquilo.",
+  "pantalla": "La reunión no te compromete a nada",
+  "guion": "Te entiendo. La reunión es una conversación para revisar tu caso. No te compromete a nada y tú decides después.",
+  "entrevista": false,
+  "video": ""
+ },
+ {
+  "cod": "R32",
+  "orden": 23,
+  "etapa": "reunion",
+  "p": "P1",
+  "titulo": "Confirmación: ¡listo!",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla final, al confirmar la reunión",
+  "toma": "Plano medio, sonriendo, cierre corto.",
+  "pantalla": "¡Listo! Ten a la mano tus documentos",
+  "guion": "¡Listo, ya tienes tu reunión! Te escribimos por WhatsApp para confirmarla. Ten a la mano tu DNI y los papeles de la propiedad que tengas.",
+  "entrevista": false,
+  "video": "videos/R32.mp4"
+ },
+ {
+  "cod": "R33",
+  "orden": 24,
+  "etapa": "reunion",
+  "p": "P1",
+  "titulo": "Que vengan todos los que deciden",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pregunta 4.1 («¿Pueden estar todos?»)",
+  "toma": "Primer plano, tono amable.",
+  "pantalla": "La reunión es con todos los que deciden",
+  "guion": "Para darte una respuesta completa, la reunión es con todos los que deciden sobre la propiedad, en la oficina o por videollamada. Así nadie se queda con dudas.",
+  "entrevista": false,
+  "video": "videos/R33.mp4"
+ }
+];
+
+const pal = s => s.trim().split(/\s+/).length;
+const seg = s => Math.round(pal(s) / 2.5);
+let filtro = 'todos';
+const leerGrabados = () => { try { return JSON.parse(localStorage.getItem('inmobify_grabados') || '{}'); } catch { return {}; } };
+const guardarGrabados = g => { try { localStorage.setItem('inmobify_grabados', JSON.stringify(g)); } catch { } };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function tarjeta(v, g) {
+  const s = seg(v.guion), largo = !v.entrevista && s > v.dur + 3;
+  return `<article class="video${g[v.cod] ? ' grabado' : ''}" id="v-${v.cod}">
+    <div class="claqueta"><span class="cod">${v.cod}</span><div><h3>${esc(v.titulo)}</h3><p class="sub">${esc(v.donde)}</p></div>
+      <div class="chips"><span class="chip ${v.p.toLowerCase()}">${v.p}</span><span class="chip">${v.dur} s</span><span class="chip">9:16</span></div></div>
+    <dl class="datos"><div><dt>Habla</dt><dd>${esc(v.habla)}</dd></div><div><dt>Toma</dt><dd>${esc(v.toma)}</dd></div></dl>
+    <dl class="pantalla"><dt>Texto en pantalla</dt><dd>${esc(v.pantalla)}</dd></dl>
+    <div class="guion"><p class="texto">${esc(v.guion)}</p>
+      <div class="pie"><span class="medida${largo ? ' larga' : ''}">${v.entrevista ? 'Entrevista, se edita a ' + v.dur + ' s' : pal(v.guion) + ' palabras · ≈ ' + s + ' s leído' + (largo ? ' · más largo que ' + v.dur + ' s' : '')}</span>
+        <div class="acciones">${v.video ? `<a class="escuchar" href="${v.video}" target="_blank" rel="noopener">▶ Escuchar prueba</a>` : ''}<button type="button" data-copiar="${v.cod}">Copiar guion</button><label for="g-${v.cod}"><input type="checkbox" id="g-${v.cod}" data-grabado="${v.cod}"${g[v.cod] ? ' checked' : ''}>Grabado</label></div></div></div>
+  </article>`;
+}
+function pintar() {
+  const g = leerGrabados();
+  const pasa = v => filtro === 'todos' || (filtro === 'pauta' && v.etapa === 'pauta') || (filtro === 'complemento' && v.etapa !== 'pauta') || (filtro === 'p1' && v.p === 'P1');
+  document.getElementById('lista').innerHTML = ETAPAS.map(e => {
+    const vs = V.filter(v => v.etapa === e.id && pasa(v));
+    return vs.length ? `<section class="etapa"><header><h2>${esc(e.titulo)}</h2><p>${esc(e.texto)}</p></header>${vs.map(v => tarjeta(v, g)).join('')}</section>` : '';
+  }).join('');
+  const total = V.length, hechos = V.filter(v => g[v.cod]).length, seg1 = V.filter(v => v.p === 'P1').reduce((a, v) => a + v.dur, 0);
+  document.getElementById('cuenta').textContent = `${total} videos · ${V.filter(v => v.etapa === 'pauta').length} de pauta · ${total - V.filter(v => v.etapa === 'pauta').length} de complemento · P1 ≈ ${Math.round(seg1 / 60 * 10) / 10} min · ${hechos} grabados en este navegador`;
+}
+document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
+  filtro = b.dataset.f; document.querySelectorAll('[data-f]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); pintar();
+}));
+document.getElementById('lectura').addEventListener('click', e => {
+  const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+  e.currentTarget.setAttribute('aria-pressed', String(on)); document.body.classList.toggle('lectura', on);
+});
+document.getElementById('lista').addEventListener('click', e => {
+  const b = e.target.closest('[data-copiar]'); if (!b) return;
+  const v = V.find(x => x.cod === b.dataset.copiar);
+  navigator.clipboard.writeText(v.guion).then(() => { b.textContent = 'Copiado'; setTimeout(() => { b.textContent = 'Copiar guion'; }, 1500); })
+    .catch(() => { const t = b.closest('.guion').querySelector('.texto'); const r = document.createRange(); r.selectNodeContents(t); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Texto seleccionado'; });
+});
+document.getElementById('lista').addEventListener('change', e => {
+  const c = e.target.closest('[data-grabado]'); if (!c) return;
+  const g = leerGrabados(); if (c.checked) g[c.dataset.grabado] = 1; else delete g[c.dataset.grabado]; guardarGrabados(g); pintar();
+});
+pintar();
+</script>
+
+</body>
+</html>
