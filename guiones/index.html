@@ -92,7 +92,7 @@ section.etapa>header p{color:var(--suave);max-width:72ch}
   <header style="display:grid;gap:10px">
     <span class="eyebrow">inmobify · Saneamiento inmobiliario · saneamiento.inmobify.com.pe · 20/11/2026</span>
     <h1>Guiones para grabar</h1>
-    <p class="lede"><b>Versión para leer · 21/11/2026.</b> Los guiones de la landing traen un video de prueba con voz sintética («Escuchar prueba»); la demo de la landing está en <a href="../">sandrotl.github.io/inmobify-demo</a>. Videos de la pauta (anuncios en Meta y TikTok) y videos de complemento para la landing: bienvenida, planes, preguntas frecuentes y reunión. Todos van en vertical 9:16. El tiempo estimado sale del número de palabras, a 2.5 palabras por segundo.</p>
+    <p class="lede"><b>Versión para leer · 21/11/2026 (actualizada al manual comercial).</b> Los guiones de la landing traen un video de prueba con voz sintética («Escuchar prueba»); la demo de la landing está en <a href="../">sandrotl.github.io/inmobify-demo</a>. Videos de la pauta (anuncios en Meta y TikTok) y videos de complemento para la landing: bienvenida, planes, preguntas frecuentes y reunión. Todos van en vertical 9:16. El tiempo estimado sale del número de palabras, a 2.5 palabras por segundo.</p>
   </header>
 
   <section class="reglas" aria-labelledby="t-reglas">
@@ -281,8 +281,8 @@ const V = [
   "habla": "Dra. Dariana Sánchez",
   "donde": "Preguntas frecuentes · «¿Cuánto cuesta?»",
   "toma": "Primer plano, tono tranquilo.",
-  "pantalla": "Diagnóstico desde S/ 2,000",
-  "guion": "Todo empieza con un diagnóstico, la Fase 1, desde dos mil soles. Ahí estudiamos tu partida y tus documentos y te damos la ruta completa con plazos y costos. La notaría y registros públicos se pagan aparte.",
+  "pantalla": "El precio de tu primer paso sale al final de las preguntas",
+  "guion": "Depende de tu caso. Al terminar las preguntas ves el precio fijo de tu primer paso: por ejemplo, dos mil soles el diagnóstico Express o tres mil el paquete de sucesión. Es solo nuestro honorario: la notaría, registros públicos y las tasas se pagan aparte.",
   "entrevista": false,
   "video": "videos/L12.mp4"
  },
@@ -296,8 +296,8 @@ const V = [
   "habla": "Dra. Dariana Sánchez",
   "donde": "Preguntas frecuentes · «¿Cuánto demora?»",
   "toma": "Primer plano. En pantalla aparecen los plazos mientras habla.",
-  "pantalla": "Sucesión 2–4 meses · Prescripción notarial ≈ 12 meses · desde que están todos los documentos",
-  "guion": "Una sucesión en notaría toma de dos a cuatro meses, y una prescripción notarial cerca de un año. El plazo corre desde que están todos los documentos. Conseguirlos toma uno o dos meses, y te ayudamos con eso.",
+  "pantalla": "Diagnóstico 2 semanas a 45 días · Sucesión 4–6 meses · Prescripción 8–10 meses",
+  "guion": "El diagnóstico toma de dos semanas a cuarenta y cinco días. Después, una sucesión en notaría toma de cuatro a seis meses, y una prescripción notarial de ocho a diez meses, desde que están todos los documentos.",
   "entrevista": false,
   "video": "videos/L13.mp4"
  },
@@ -396,13 +396,13 @@ const V = [
   "orden": 18,
   "etapa": "planes",
   "p": "P1",
-  "titulo": "Plan: Fase 1 rápida",
+  "titulo": "Plan: Fase 1 · Saneamiento Express",
   "dur": 20,
   "habla": "Dra. Dariana Sánchez",
-  "donde": "Pantalla del plan: tiene partida y deciden hasta 3 personas",
+  "donde": "Pantalla del plan: tiene partida, máximo 3 personas y un solo inmueble",
   "toma": "Plano medio, tono seguro. No decir el monto: ya está en pantalla.",
-  "pantalla": "Fase 1 · Diagnóstico rápido",
-  "guion": "Como tu propiedad ya tiene partida, empezamos con el diagnóstico rápido. Estudiamos tu partida y tus documentos y te entregamos la estrategia y el plan de trabajo con plazos y costos.",
+  "pantalla": "Fase 1 · Saneamiento Express · 2 semanas",
+  "guion": "Como tu propiedad ya tiene partida, empezamos con el diagnóstico Express. En dos semanas estudiamos tu partida y tus documentos y te entregamos el plan de trabajo con plazos y costos.",
   "entrevista": false,
   "video": "videos/P25.mp4"
  },
@@ -411,13 +411,13 @@ const V = [
   "orden": 19,
   "etapa": "planes",
   "p": "P1",
-  "titulo": "Plan: Fase 1 completa",
+  "titulo": "Plan: Fase 1 · Saneamiento Completa",
   "dur": 15,
   "habla": "Dra. Dariana Sánchez",
-  "donde": "Pantalla del plan: sin partida, no sabe, o 4 o más personas",
+  "donde": "Pantalla del plan: sin partida, no sabe, más de 3 personas o varios inmuebles",
   "toma": "Plano medio. No decir el monto.",
-  "pantalla": "Fase 1 · Diagnóstico completo",
-  "guion": "Tu caso necesita el diagnóstico completo: buscamos la propiedad en el catastro de registros públicos, estudiamos los documentos de todos y te entregamos la estrategia con plazos y costos.",
+  "pantalla": "Fase 1 · Saneamiento Completa · 30 a 45 días",
+  "guion": "Tu caso necesita el diagnóstico completo: buscamos la propiedad en registros públicos, estudiamos los documentos de todos y te entregamos el plan de trabajo con plazos y costos.",
   "entrevista": false,
   "video": "videos/P26.mp4"
  },
@@ -431,10 +431,55 @@ const V = [
   "habla": "Dra. Dariana Sánchez",
   "donde": "Pantalla del plan: «Tengo un juicio por mi propiedad»",
   "toma": "Primer plano, tono serio.",
-  "pantalla": "Revisión de tu expediente judicial",
-  "guion": "Como ya hay un juicio, lo primero es leer tu expediente. Envíanos lo que tengas por WhatsApp y en la reunión te decimos en qué etapa está y qué opciones tienes.",
+  "pantalla": "Revisión de expediente · reserva S/ 500",
+  "guion": "Como ya hay un juicio, lo primero es leer tu expediente completo. Separas la revisión con una reserva, nos traes el expediente completo, en copias o fotos, y te entregamos el estado del juicio y las opciones.",
   "entrevista": false,
   "video": "videos/P27.mp4"
+ },
+ {
+  "cod": "P28",
+  "orden": 20.1,
+  "etapa": "planes",
+  "p": "P1",
+  "titulo": "Plan: sucesión · diagnóstico + documentos",
+  "dur": 20,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan, ruta «a nombre de un familiar que falleció» (paquete Fase 1 + Fase 2, S/ 3,000)",
+  "toma": "Primer plano, tono cercano. No decir el monto: ya está en pantalla.",
+  "pantalla": "Sucesión · diagnóstico + documentos · 3 a 5 semanas",
+  "guion": "Tu caso es una sucesión. Empezamos con el paquete de diagnóstico y documentos: sacamos las actas y certificados, revisamos que no tengan errores y te entregamos el plan para hacer la sucesión en notaría.",
+  "entrevista": false,
+  "video": "videos/P28.mp4"
+ },
+ {
+  "cod": "P29",
+  "orden": 20.2,
+  "etapa": "planes",
+  "p": "P1",
+  "titulo": "Plan: revisión previa",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan, ruta «ya está a mi nombre: dividir, donar, pasar a mis hijos o corregir medidas» (S/ 900)",
+  "toma": "Primer plano. No decir el monto.",
+  "pantalla": "Revisión previa · 3 días hábiles",
+  "guion": "Como la propiedad ya está a tu nombre, solo confirmamos que el trámite procede. En tres días hábiles te decimos por escrito si procede, qué documentos faltan y cuánto cuesta.",
+  "entrevista": false,
+  "video": "videos/P29.mp4"
+ },
+ {
+  "cod": "P30",
+  "orden": 20.3,
+  "etapa": "planes",
+  "p": "P2",
+  "titulo": "Plan: due diligence (antes de comprar)",
+  "dur": 15,
+  "habla": "Dra. Dariana Sánchez",
+  "donde": "Pantalla del plan, ruta «voy a comprar» (S/ 4,500 persona; hasta S/ 8,000 empresa)",
+  "toma": "Primer plano. No decir el monto.",
+  "pantalla": "Due diligence · 2 semanas",
+  "guion": "Antes de pagar, revisamos la partida, las cargas y quién es el dueño real. En dos semanas te decimos si la compra es segura.",
+  "entrevista": false,
+  "video": "videos/P30.mp4"
  },
  {
   "cod": "R30",
